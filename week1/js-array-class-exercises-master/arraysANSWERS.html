@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // we're importing our data from a JS file, and then 
+    const queensArray = JSON.parse(queensData);
+    // console.log(queensArray);
+    // 1. write a function which takes in an array, and returns an array of objects
+    // with the queen's name and their quote.
+    // ie; [ { "name": "cynthia lee fontaine", "quote": "How you doin' mis amores? Do you want to see my cucu?"} ]
+    function getQueensQuotes(queens) {
+      return queens.map((queen) => {
+        return {
+          name: queen.name,
+          quote: queen.quote,
+        };
+      });
+    }
+    const queensQuotes = getQueensQuotes(queensArray);
+    // console.log(queensQuotes);
+    // 2. Write a function which takes an array, and returns an array of 'queen' objects
+    // where the it is only an array of winners.
+    function getWinnerQueens(queens) {
+      return queens.filter((queen) => {
+        return queen.winner;
+      });
+    }
+    const queensWinners = getWinnerQueens(queensArray);
+    // console.log(queensWinners);
+    // 3. Write a function which takes in the in an array and a season number
+    //  and returns only queen objects which are part of the season number provided.
+    //  NOTE: seasons array array as well!
+    // function getQueensBySeason(queens, seasonNumber) {
+    //   return queens.filter((queen) => {
+    //     return queen.seasons.find((season) => {
+    //       return season.seasonNumber === seasonNumber;
+    //     });
+    //   });
+    // }
+    // function getQueensBySeason(queens, seasonNumber) {
+    //   return queens.filter((queen) => {
+    //     return queen.seasons.some((season) => {
+    //       return season.seasonNumber === seasonNumber;
+    //     });
+    //   });
+    // }
+    function getQueensBySeason(queens, seasonNumber) {
+      return queens.filter((queen) => {
+        let existInSeason = false;
+        queen.seasons.forEach((season) => {
+          if (season.seasonNumber === seasonNumber) {
+            existInSeason = true;
+            return
+          }
+        });
+        return existInSeason;
+      });
+    }
+    const season9Queens = getQueensBySeason(queensArray, "9");
+    // console.log(season9Queens);
+    // 4. Write a function which which takes an array, and returns an object which has two keys, winners and missCongenialities.
+    // the values of these keys will be arrays with the queen info inside of them.
+    // ie; 
+    // {
+    //  "winners": [ { ... } ],
+    //  "fanFavourites": [ { ... }],
+    // }
+    function getWinnersAndFanFavourites(queens) {
+      return queens.reduce((acc, queen) => {
+        if (queen.winner) {
+          acc.winners = acc.winners.concat(queen);
+          // this is also a possible way to solve this problem.
+          // const newWinners = acc.winners;
+          // newWinners.push(queen);
+          // acc.winners = newWinners;
+        }
+        if (queen.missCongeniality) {
+          acc.fanFavourites = acc.fanFavourites.concat(queen);
+        }
+        return acc;
+      }, {
+        winners: [],
+        fanFavourites: [],
+      });
+    }
+    const winnersAndFanFavourites = getWinnersAndFanFavourites(queensArray);
+    console.log(winnersAndFanFavourites);
+
+  </script>
+</body>
+
+</html>

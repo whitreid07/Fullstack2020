@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Book Lists</title>
+</head>
+
+<body>
+  <script>
+    // these challenges are courtesy of https://github.com/gSchool/JS-Intro-OOP-Exercises
+    // 1. The Cat
+
+    // Write yourself a virtual cat - animals with a CLI are so much nicer than ones with fur.
+
+    // Create an object that represents a cat. It should have properties for tiredness, hunger, lonliness and happiness
+    // Next, write methods that increase and decrease those properties. Call them something that actually represents what would increase or decrease these things, like "feed", "sleep", or "pet".
+    // Last, write a method that prints out the cat's status in each area. (Be creative e.g. Paws is really hungry, Paws is VERY happy.)
+    // Bonus: Make the functions take arguments that increase or decrease arbitrary amounts
+    // Bonus: Make the functions as arbitrary as cats are - sometimes make it so the cat doesn't want to be petted.
+
+    // class VCat {
+    //   constructor() {
+    //     this.hunger = 0;
+    //     this.tiredness = 0;
+    //     this.lonliness = 0;
+    //     this.happiness = 0;
+    //   }
+
+    //   feed() {
+    //     this.hunger = this.hunger - 10;
+    //   }
+
+    //   play() {
+    //     this.lonliness = this.lonliness;
+    //   }
+    // }
+
+    // 2. The Reading List
+
+    // Create a class BookList
+
+    class Booklist {
+      constructor(currentBook = {}, nextBook = {}) {
+        this.nextBook = nextBook;
+        this.currentBook = currentBook;
+        this.lastBook = {};
+        this.list = [];
+      }
+      addBook(book) {
+        this.list = this.list.concat(book);
+      }
+
+      completedCurrentBook() {
+        this.lastBook = this.currentBook;
+        this.currentBook = this.nextBook;
+        this.nextBook = {};
+      }
+    }
+
+    class Book {
+      constructor(title, author, genre) {
+        this.title = title;
+        this.genre = genre;
+        this.author = author;
+        this.read = false;
+        this.readDate = '';
+      }
+
+      readBook() {
+        this.read = true;
+        this.readDate = new Date();
+      }
+
+    }
+
+    const handmaidsTale = new Book('handmaids tail', 'marget atwood', 'sci-fi');
+    const harryPotter = new Book('harry potter', 'jk rowling', 'fantasy');
+
+    const bookList = new BookList(handmaidsTale, harryPotter);
+    bookList.completedCurrentBook();
+    console.log(bookList);
+    // Create another class called Book
+    // BookLists should have the following properties:
+    //     A reference to the next book to read (book object)
+    //     A reference to the current book being read (book object)
+    //     A reference to the last book read (book object)
+    //     An array of all the Books
+
+
+
+    // Each Book should have several properties:
+    //     Title
+    //     Genre
+    //     Author
+    //     Read (true or false)
+    //     Read date, can be blank, otherwise needs to be a JS Date() object
+
+    // Every Booklist should have a few methods:
+    //     .add(book)
+    //         should add a book to the books list.
+    //     .booksRead()
+    //        should return an array of read books
+    //     .booksUnread()
+    //        should return an array of unread books
+    //     .currentBook(book)
+    //        should set a book as the current book
+    //     .nextBook(book)
+    //         should set the next book to be read
+    //     .finishCurrentBook()
+    //         should mark the book that is currently being read as "read"
+    //         Give it a read date of new Date(Date.now())
+    //         Change the last book read to be the book that just got finished
+    //         Change the current book to be the next book to be read
+    //         Change the next book to be read property to be the first unread book you find in the list of books
+    // Booklists and Books might need more methods than that. Try to think of more that might be useful. 
+  </script>
+</body>
+
+</html>

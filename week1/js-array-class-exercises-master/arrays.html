@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JS Refresher Exercsies</title>
+</head>
+
+<body>
+  <script src="./queens-data.js"></script>
+  <script>
+    // we're importing our data from a JS file, and then 
+    const queensArray = JSON.parse(queensData);
+    console.log(queensArray);
+
+    // 1. write a function which takes in an array, and returns an array of objects
+    // with the queen's name and their quote.
+    // ie; [ { "name": "cynthia lee fontaine", "quote": "How you doin' mis amores? Do you want to see my cucu?"} ]
+
+    // let queensQuote = queensArray.fliter(n) => {
+    //   return `name: ${name}, quote${quote}`;
+    // };
+
+    function getQueenQuotes(array) {
+      return array.map((queen) => {
+        return (
+          name: queen.name,
+          quote: queen.quote,
+        };
+    });
+    }
+
+
+    // 2. Write a function which takes an array, and returns an array of 'queen' objects
+    // where the it is only an array of winners.
+
+    const getQueenQuotes = getQueensQuotes(queenArray);
+    console.log(queensQuotes)
+
+    function getWinnerQueens(queens) {
+      return queens.filter((queen) => {
+        return queen.winner;
+      });
+    }
+
+    const queensWinner = getWinnerQueens(queensArray);
+    console.log(queensWinner);
+
+    // 3. Write a function which takes in the in an array and a season number
+    //  and returns only queen objects which are part of the season number provided.
+    //  NOTE: seasons array array as well!
+
+    function getQueensBySeason(queens, seasonNumber) {
+      return queens.filter((queen) => {
+        return queen.season.find((season) => {
+          return season.seasonNumber === seasonNUmber;
+        });
+      });
+    }
+
+    const season9Queens = getQueensBySeason(queensArray, "9");
+    console.log(season9Queens);
+
+    // 4. Write a function which which takes an array, and returns an object which has two keys, winners and missCongenialities.
+    // the values of these keys will be arrays with the queen info inside of them.
+    // ie; 
+    // {
+    //  "winners": [ { ... } ],
+    //  "missCongenialities": [ { ... }],
+    // }
+
+  </script>
+</body>
+
+</html>
