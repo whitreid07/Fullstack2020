@@ -26,7 +26,6 @@ function App() {
             <Route path="/queen/:id" component={Queen} />
           </Switch>
         </Router>
-        <List />
       </main>
     </Fragment>
   );

@@ -43,7 +43,7 @@ export default function Queen(props) {
         </Grid>
         <Grid item xs={6}>
           <Typography variant="h2">{queen.name}</Typography>
-          <Typography variant="body1">{queen.desciption}</Typography>
+          <Typography variant="body1">{queen.quote}</Typography>
         </Grid>
       </Grid>
     </Container>
